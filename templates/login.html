@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click Games</title>
+</head>
+<body>
+    <form action="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ form.usuario.id_for_label }}">{{ form.usuario.label }}</label>
+            {{ form.usuario }}
+            {% for error in form.usuario.errors %}
+                <div class="error">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.senha.id_for_label }}">{{ form.senha.label }}</label>
+            {{ form.senha }}
+            {% for error in form.senha.errors %}
+                <div class="error">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>
