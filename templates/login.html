@@ -4,25 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Click Games</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main.css' %}">
 </head>
 <body>
-    <form action="POST">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="{{ form.usuario.id_for_label }}">{{ form.usuario.label }}</label>
-            {{ form.usuario }}
-            {% for error in form.usuario.errors %}
-                <div class="error">{{ error }}</div>
-            {% endfor %}
-        </div>
-        <div class="form-group">
-            <label for="{{ form.senha.id_for_label }}">{{ form.senha.label }}</label>
-            {{ form.senha }}
-            {% for error in form.senha.errors %}
-                <div class="error">{{ error }}</div>
-            {% endfor %}
-        </div>
-        <input type="submit" value="Login">
-    </form>
+    <div class="form-container">
+        <form action="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.usuario.id_for_label }}">{{ form.usuario.label }}</label>
+                {{ form.usuario }}
+                {% for error in form.usuario.errors %}
+                    <div class="error">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.senha.id_for_label }}">{{ form.senha.label }}</label>
+                {{ form.senha }}
+                {% for error in form.senha.errors %}
+                    <div class="error">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div class="input-field">
+                <input type="submit" value="Login">
+            </div>
+        </form>
+    </div>
 </body>
 </html>
