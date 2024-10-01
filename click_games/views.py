@@ -5,9 +5,14 @@ from django.views import View
 from click_games.forms import LoginForm, CriarContaForm
 from django.contrib.auth.models import User
 from .models import Jogo, HistoricoLogin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
+
+class HomeView(LoginRequiredMixin, View):
+    def get(self, request):
+        return render(request, 'home.html')
 class LoginView(View):
     def get(self, request):
         contexto = {
