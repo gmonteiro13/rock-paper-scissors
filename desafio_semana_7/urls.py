@@ -16,10 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from click_games.views import LoginView
+from click_games.views import LoginView, CriarContaView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', LoginView.as_view(), name='login'),
+    path('criar-conta/', CriarContaView.as_view(), name='criar-conta'),
     
 ]

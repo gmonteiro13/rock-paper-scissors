@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="form-container">
-        <h1>Login</h1>
+        <h1>Criar conta</h1>
         {% if messages %}
             {% for message in messages %}
                 <div class="messages {{ message.tags }}">
@@ -21,23 +21,27 @@
         <form action="" method="POST">
             {% csrf_token %}
             <div class="form-group">
-                <label for="{{ form.usuario.id_for_label }}">{{ form.usuario.label }}</label>
-                {{ form.usuario }}
-                {% for error in form.usuario.errors %}
+                <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+                {{ form.username }}
+                {% for error in form.username.errors %}
                     <div class="error">{{ error }}</div>
                 {% endfor %}
             </div>
             <div class="form-group">
-                <label for="{{ form.senha.id_for_label }}">{{ form.senha.label }}</label>
-                {{ form.senha }}
-                {% for error in form.senha.errors %}
+                <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
+                {{ form.password1 }}
+                {% for error in form.password1.errors %}
                     <div class="error">{{ error }}</div>
                 {% endfor %}
             </div>
-                <input type="submit" value="Login">
+            <div class="form-group">
+                <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
+                {{ form.password2 }}
+                {% for error in form.password2.errors %}
+                    <div class="error">{{ error }}</div>
+                {% endfor %}
+            </div>
+                <input type="submit" value="Criar">
         </form>
-    </div>
-    <p>Não tem conta?</p>
-    <a href="{% url 'criar-conta' %}">Criar conta</a>
 </body>
 </html>
