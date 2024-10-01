@@ -2,9 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.views import View
-from click_games.forms import LoginForm, CriarContaForm
-from django.contrib.auth.models import User
-from .models import Jogo, HistoricoLogin
+from click_games.forms import LoginForm, CriarContaForm, JogoForm
+from .models import Jogo, HistoricoLogin, User
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -12,7 +11,22 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 class HomeView(LoginRequiredMixin, View):
     def get(self, request):
-        return render(request, 'home.html')
+        contexto = {
+            'form': JogoForm(),
+        }
+        return render(request, 'home.html', contexto)
+    
+    def post(self, request):
+        form = JogoForm(request.POST)
+        if form.is_valid():
+            usuario = User.objects.get(pk=request.user.id)
+            opcao_usuario = form.cleaned_data['opcao_usuario']
+            jogo = Jogo(usuario=usuario, opcao_usuario=opcao_usuario)
+            jogo.escolha_computador()
+            jogo.gerar_resultado()
+            jogo.save()
+            return render(request, 'home.html', {'jogo': jogo, 'form': form})
+
 class LoginView(View):
     def get(self, request):
         contexto = {

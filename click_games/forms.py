@@ -1,6 +1,6 @@
 from django import forms
-from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from .models import Jogo
 
 class LoginForm(forms.Form):
     usuario = forms.CharField(
@@ -24,4 +24,10 @@ class CriarContaForm(UserCreationForm):
     password2 = forms.CharField(
         label='Confirmação de senha',
         widget=forms.PasswordInput()
+    )
+
+class JogoForm(forms.Form):
+    opcao_usuario = forms.ChoiceField(
+        label='Escolha uma opção',
+        choices=Jogo.ESCOLHAS_JOGO
     )

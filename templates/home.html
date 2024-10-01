@@ -15,6 +15,25 @@
             </div>
         {% endfor %}
     {% endif %}
-    <h2>hi</h2>
+    <div class="form-container">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.opcao_usuario.id_for_label }}">{{ form.opcao_usuario.label }}</label>
+                {{ form.opcao_usuario }}
+                {% for error in form.opcao_usuario.errors %}
+                    <div class="error">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <input type="submit" value="Jogar">
+        </form>
+    </div>
+    {% if jogo %}
+        <div class="resultado-jogo">
+            <p>Escolha jogador: {{ jogo.opcao_usuario }}</p>
+            <p>Escolha computador: {{ jogo.opcao_computador }}</p>
+            <p>Resultado: {{ jogo.resultado }}</p>
+        </div>
+    {% endif %}
 </body>
 </html>

@@ -10,14 +10,14 @@ class Jogo(models.Model):
     ]
     
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='jogos')
-    opcaoUsuario = models.CharField(max_length=50, choices=ESCOLHAS_JOGO)
-    opcaoComputador = models.CharField(max_length=50, choices=ESCOLHAS_JOGO)
+    opcao_usuario = models.CharField(max_length=50, choices=ESCOLHAS_JOGO)
+    opcao_computador = models.CharField(max_length=50, choices=ESCOLHAS_JOGO)
     resultado = models.CharField(max_length=50)
     data = models.DateTimeField(auto_now_add=True)
     
     def escolha_computador(self):
         import random
-        return random.choice(self.ESCOLHAS_JOGO)
+        self.opcao_computador = random.choice(['pedra', 'papel', 'tesoura'])
     
     def gerar_resultado(self):
         escolhas_enum = {
@@ -26,15 +26,15 @@ class Jogo(models.Model):
             'tesoura': 2
         }
         
-        escolha_usuario_enum = escolhas_enum[self.opcaoUsuario]
-        escolha_computador_enum = escolhas_enum[self.opcaoComputador]
+        escolha_usuario_enum = escolhas_enum[self.opcao_usuario]
+        escolha_computador_enum = escolhas_enum[self.opcao_computador]
         
-        if self.opcaoUsuario == self.opcaoComputador:
-            return 'Empate'
-        if (escolha_usuario_enum - escolha_computador_enum) % 3 == 1:
-            return 'Vitória'
+        if self.opcao_usuario == self.opcao_computador:
+            self.resultado = 'empate'
+        elif (escolha_usuario_enum - escolha_computador_enum) % 3 == 1:
+            self.resultado = 'vitória'
         else:
-            return 'Derrota'
+            self.resultado = 'derrota'
         
     
 class HistoricoLogin(models.Model):
