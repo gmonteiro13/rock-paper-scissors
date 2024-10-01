@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.views import View
+from django.contrib.auth.models import User
 from click_games.forms import LoginForm, CriarContaForm, JogoForm
-from .models import Jogo, HistoricoLogin, User
+from .models import Jogo, HistoricoLogin
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -53,6 +54,12 @@ class LoginView(View):
                 messages.error(request, 'Usuário ou senha inválidos')
                 return render(request, 'login.html', {'form': form})
         return render(request, 'login.html', {'form': form})
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        
+        return redirect('login')
     
 class CriarContaView(View):
     def get(self, request):
@@ -69,16 +76,16 @@ class CriarContaView(View):
             return redirect('../login')
         return render(request, 'criar-conta.html', {'form': form})
     
-class HistoricoLoginView(View):
+class HistoricoLoginView(LoginRequiredMixin, View):
     def get(self, request):
         contexto = {
             'historico': HistoricoLogin.objects.all()
         }
         return render(request, 'historico-login.html', contexto)
         
-
-class LogoutView(View):
+class HistoricoJogosView(LoginRequiredMixin, View):
     def get(self, request):
-        logout(request)
-        
-        return redirect('login')
+        contexto = {
+            'jogos': Jogo.objects.all()
+        }
+        return render(request, 'historico-jogos.html', contexto)

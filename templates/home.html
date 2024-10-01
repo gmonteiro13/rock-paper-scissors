@@ -9,9 +9,22 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="{% url 'logout' %}">Logout</a>
-        <a href="{% url 'historico-login' %}">Histórico de login</a>
-        <a href="{% url 'logout' %}">Histórico de partidas</a>
+        <div class="logo">
+            <a href="#">
+                <img src="{% static 'img/joystick_808513.png' %}" alt="Joystick">
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="{% url 'logout' %}">Logout</a>
+            </li>
+            <li>
+                <a href="{% url 'historico-login' %}">Histórico de login</a>
+            </li>
+            <li>
+                <a href="{% url 'historico-jogos' %}">Histórico de partidas</a>
+            </li>
+        </ul>
     </nav>
     {% if messages %}
         {% for message in messages %}
@@ -25,12 +38,11 @@
             {% csrf_token %}
             <div class="form-group">
                 <label for="{{ form.opcao_usuario.id_for_label }}">{{ form.opcao_usuario.label }}</label>
-                {{ form.opcao_usuario }}
-                {% for error in form.opcao_usuario.errors %}
-                    <div class="error">{{ error }}</div>
-                {% endfor %}
+                <div class="opcoes-jogo">
+                    {{ form.opcao_usuario }}
+                </div>
             </div>
-            <input type="submit" value="Jogar">
+            <input type="submit" value="Jogar!">
         </form>
     </div>
     {% if jogo %}
@@ -41,4 +53,7 @@
         </div>
     {% endif %}
 </body>
+<footer>
+    <a href="https://www.freepik.com/search">Icon by mynamepong</a>
+</footer>
 </html>

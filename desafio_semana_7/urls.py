@@ -21,7 +21,8 @@ from click_games.views import (
     LogoutView,
     CriarContaView,
     HomeView,
-    HistoricoLoginView)
+    HistoricoLoginView,
+    HistoricoJogosView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,5 +30,6 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('criar-conta/', CriarContaView.as_view(), name='criar-conta'),
     path ('home', HomeView.as_view(), name='home'),
-    path('historico-login', HistoricoLoginView.as_view(), name='historico-login')
+    path('historico-login', HistoricoLoginView.as_view(), name='historico-login'),
+    path('historico-jogos', HistoricoJogosView.as_view(), name='historico-jogos'),
 ]
