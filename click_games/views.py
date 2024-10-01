@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.views import View
 from click_games.forms import LoginForm, CriarContaForm, JogoForm
@@ -68,3 +68,17 @@ class CriarContaView(View):
             messages.success(request, 'Conta criada com sucesso')
             return redirect('../login')
         return render(request, 'criar-conta.html', {'form': form})
+    
+class HistoricoLoginView(View):
+    def get(self, request):
+        contexto = {
+            'historico': HistoricoLogin.objects.all()
+        }
+        return render(request, 'historico-login.html', contexto)
+        
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        
+        return redirect('login')

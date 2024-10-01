@@ -16,12 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from click_games.views import LoginView, CriarContaView, HomeView
+from click_games.views import (
+    LoginView,
+    LogoutView,
+    CriarContaView,
+    HomeView,
+    HistoricoLoginView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
     path('criar-conta/', CriarContaView.as_view(), name='criar-conta'),
     path ('home', HomeView.as_view(), name='home'),
-    
+    path('historico-login', HistoricoLoginView.as_view(), name='historico-login')
 ]

@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="{% static 'main.css' %}">
 </head>
 <body>
+    <nav class="navbar">
+        <a href="{% url 'logout' %}">Logout</a>
+        <a href="{% url 'historico-login' %}">Histórico de login</a>
+        <a href="{% url 'logout' %}">Histórico de partidas</a>
+    </nav>
     {% if messages %}
         {% for message in messages %}
             <div class="messages {{ message.tags }}">
