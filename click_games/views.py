@@ -84,7 +84,6 @@ class HistoricoLoginView(LoginRequiredMixin, View):
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
         contexto = {
-            'historico': historico,
             'page_obj': page_obj
         }
         return render(request, 'historico-login.html', contexto)
@@ -96,7 +95,6 @@ class HistoricoJogosView(LoginRequiredMixin, View):
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
         contexto = {
-            'jogos': jogos,
             'page_obj': page_obj
         }
         return render(request, 'historico-jogos.html', contexto)
