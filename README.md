@@ -45,12 +45,12 @@ O form que gerencia a criação de novas contas, herdada do form padrão do Djan
 O form que gerencia a opção escolhida pelo usuário para o jogo "Pedra, Papel ou Tesoura", com o parâmetro:
 - **opcao_usuario:** ChoiceField, a escolha do usuário entre as opções definidas na constante ESCOLHAS_JOGO, passado para o form como Select
 
-### Pré-requisitos
+## Pré-requisitos
 - Python 3.x
 - pip (Python package installer)
 - Virtualenv (opcional, mas recomendado)
 
-### Passo a Passo
+## Passo a Passo
 
 1. **Clone o repositório:**
     ```bash

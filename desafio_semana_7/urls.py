@@ -30,7 +30,7 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('criar-conta/', CriarContaView.as_view(), name='criar-conta'),
     path('', HomeView.as_view(), name=''),
-    path ('home', HomeView.as_view(), name='home'),
-    path('historico-login', HistoricoLoginView.as_view(), name='historico-login'),
-    path('historico-jogos', HistoricoJogosView.as_view(), name='historico-jogos'),
+    path ('home/', HomeView.as_view(), name='home'),
+    path('historico-login/', HistoricoLoginView.as_view(), name='historico-login'),
+    path('historico-jogos/', HistoricoJogosView.as_view(), name='historico-jogos'),
 ]
