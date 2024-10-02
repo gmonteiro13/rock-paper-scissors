@@ -9,16 +9,17 @@
 </head>
 <body>
     <div class="container-principal">
+        <h1>Click Games</h1>
         <div class="form-container">
-            <h1>Click Games</h1>
-            {% if messages %}
+            <div class="error-container">
+                {% if messages %}
                 {% for message in messages %}
                     <div class="messages {{ message.tags }}">
                         {{ message }}
                     </div>
                 {% endfor %}
             {% endif %}
-    
+            </div>
             <form action="" method="POST">
                 {% csrf_token %}
                 <div class="form-group">
