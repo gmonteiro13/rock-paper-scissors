@@ -11,15 +11,15 @@
     <div class="container-principal">
         <h1>Click Games</h1>
         <div class="form-container">
+            {% if messages %}
             <div class="error-container">
-                {% if messages %}
                 {% for message in messages %}
                     <div class="messages {{ message.tags }}">
                         {{ message }}
                     </div>
                 {% endfor %}
-            {% endif %}
             </div>
+            {% endif %}
             <form action="" method="POST">
                 {% csrf_token %}
                 <div class="form-group">
