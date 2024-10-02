@@ -9,6 +9,19 @@ body {
     background-color: #b00cf1;
 }
 
+h1 {
+    margin-bottom: 10px;
+}
+
+.btn:hover {
+    background-color: #b00cf1;
+    transition: background-color 0.5s ease;
+}
+
+.error {
+    color:crimson;
+}
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -65,11 +78,11 @@ body {
 .form-container .form-group {
     display: flex;
     flex-direction: column;
+    margin-bottom: 20px;
 }
 
 .form-container .form-group label {
-    margin-bottom: 20px;
-    font-weight: bold;
+    text-align: center;
 }
 
 .form-container input {
@@ -84,12 +97,139 @@ body {
 .form-container .form-group .opcoes-jogo select {
     width: 100%;
     padding: 10px;
-    margin-bottom: 10px;
+    margin: 10px 0 10px 0;
     border-radius: 7px;
     box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.4);
     text-align: center;
     color:black;
-    background-color:gold;
+    background-color:coral;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: bold;
+}
+
+.container-resultado-jogo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.container-resultado-jogo .resumo-jogo {
+    display: flex;
+    flex-direction: column;
+    background-color: coral;
+    border-radius: 7px;
+    padding: 40px;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+    gap: 5px
+}
+
+.container-resultado-jogo .resumo-jogo p {
+    text-align: center;
+}
+
+.container-resultado-jogo .resumo-jogo p span.vitoria {
+    color: white;
+}
+
+.container-resultado-jogo .resumo-jogo p span.empate {
+    color: gray;
+}
+
+.container-resultado-jogo .resumo-jogo p span.derrota {
+    color: crimson;
+}
+
+.opcoes-extras-conta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.opcoes-extras-conta a {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 7px;
+    background-color: coral;
+    text-decoration: none;
+    color: black;
+}
+
+.opcoes-extras-conta a:hover {
+    background-color: mediumaquamarine;
+    transition: background-color 0.3s ease;
+}
+
+
+.container-tabela {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.tabela-historico-jogos, .tabela-historico-login {
+    border-collapse: collapse;
+    align-items: center;
+}
+
+.tabela-historico-jogos {
+    width: 80%;
+}
+
+.tabela-historico-login {
+    width: 50%;
+}
+  
+td, th {
+    border: 1px solid black;
+    text-align: center;
+    padding: 8px;
+}
+
+tr:nth-child(odd) {
+    background-color: coral;
+}
+
+tr:nth-child(even) {
+    background-color: mediumaquamarine;
+}
+
+th.data-jogo, th.escolha-usuario, th.escolha-computador, th.resultado-jogo {
+    width: 25%;
+}
+
+th.data-login, th.hora-login {
+    width: 50%;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination a, footer a {
+    text-decoration: none;
+    color: white;
+}
+
+.pagination a:hover, footer a:hover {
+    color: mediumaquamarine;
+}
+
+
+footer {
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    bottom: 0;
+    width: 100%;
 }

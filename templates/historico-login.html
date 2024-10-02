@@ -9,12 +9,58 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="{% url 'home' %}">Jogar</a>
-        <a href="{% url 'logout' %}">Logout</a>
-        <a href="{% url 'historico-jogos' %}">Histórico de partidas</a>
+        <div class="logo">
+            <a href="#">
+                <img src="{% static 'img/joystick_808513.png' %}" alt="Joystick">
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="{% url 'home' %}">Jogar</a>
+            </li>
+            <li>
+                <a href="{% url 'historico-jogos' %}">Histórico de jogos</a>
+            </li>
+            <li>
+                <a href="{% url 'logout' %}">Logout</a>
+            </li>
+        </ul>
     </nav>
-    {% for entrada in historico %}
-        <p>{{ entrada.data }}</p>
-    {% endfor %}
+    <div class="container-tabela">
+        <table class="tabela-historico-login">
+            <tr>
+                <th class="data-login">Data</th>
+                <th class="hora-login">Hora</th>
+            </tr>
+            {% for entrada in page_obj %}
+            <tr>
+                <td>{{ entrada.data|date:"d/m/Y" }}</td>
+                <td>{{ entrada.data|date:"H:i"}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; Primeira</a> |
+                <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+            {% endif %}
+    
+            <span class="current">
+                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+            </span>
+    
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Próxima</a> |
+                <a href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+    <footer>
+        <div class="infos-site">
+            <a href="https://www.freepik.com/search">Icon by mynamepong</a>
+        </div>
+    </footer>
 </body>
 </html>

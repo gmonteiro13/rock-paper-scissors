@@ -16,13 +16,13 @@
         </div>
         <ul class="nav-links">
             <li>
-                <a href="{% url 'logout' %}">Logout</a>
+                <a href="{% url 'historico-jogos' %}">Histórico de partidas</a>
             </li>
             <li>
                 <a href="{% url 'historico-login' %}">Histórico de login</a>
             </li>
             <li>
-                <a href="{% url 'historico-jogos' %}">Histórico de partidas</a>
+                <a href="{% url 'logout' %}">Logout</a>
             </li>
         </ul>
     </nav>
@@ -42,18 +42,29 @@
                     {{ form.opcao_usuario }}
                 </div>
             </div>
-            <input type="submit" value="Jogar!">
+            <input class="btn" type="submit" value="Jogar!">
         </form>
     </div>
     {% if jogo %}
-        <div class="resultado-jogo">
-            <p>Escolha jogador: {{ jogo.opcao_usuario }}</p>
-            <p>Escolha computador: {{ jogo.opcao_computador }}</p>
-            <p>Resultado: {{ jogo.resultado }}</p>
+        <div class="container-resultado-jogo">
+            <div class="resumo-jogo">
+                <p>Escolha do computador: {{ jogo.opcao_computador|capfirst }}</p>
+                <p>Resultado:
+                {% if jogo.resultado == 'vitória' %}
+                    <span class="vitoria">Você ganhou!</span>
+                {% elif jogo.resultado == 'derrota' %}
+                    <span class="derrota">Você perdeu :&lpar;</span>
+                {% else %}
+                    <span class="empate">O jogo empatou.</span>
+                {% endif %}
+            </p>
+            </div>
         </div>
     {% endif %}
+    <footer>
+        <div class="infos-site">
+            <a href="https://www.freepik.com/search">Icon by mynamepong</a>
+        </div>
+    </footer>
 </body>
-<footer>
-    <a href="https://www.freepik.com/search">Icon by mynamepong</a>
-</footer>
 </html>
