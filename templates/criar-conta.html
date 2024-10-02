@@ -32,14 +32,14 @@
                     <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
                     {{ form.password1 }}
                     {% for error in form.password1.errors %}
-                        <p class="error">{{ error }}</p>
+                        <div class="error">{{ error }}</div>
                     {% endfor %}
                 </div>
                 <div class="form-group">
                     <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
                     {{ form.password2 }}
                     {% for error in form.password2.errors %}
-                        <p class="error">{{ error }}</p>
+                        <div class="error">{{ error }}</div>
                     {% endfor %}
                 </div>
                     <input class="btn" type="submit" value="Criar">
