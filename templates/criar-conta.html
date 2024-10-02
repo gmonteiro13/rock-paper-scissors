@@ -8,48 +8,50 @@
     <link rel="stylesheet" href="{% static 'main.css' %}">
 </head>
 <body>
-    <div class="form-container">
-        <h1>Criar conta</h1>
-        {% if messages %}
-            {% for message in messages %}
-                <div class="messages {{ message.tags }}">
-                    {{ message }}
+    <div class="container-principal">
+        <div class="form-container">
+            <h1>Criar conta</h1>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="messages {{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+    
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+                    {{ form.username }}
+                    {% for error in form.username.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
                 </div>
-            {% endfor %}
-        {% endif %}
-
-        <form action="" method="POST">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
-                {{ form.username }}
-                {% for error in form.username.errors %}
-                    <div class="error">{{ error }}</div>
-                {% endfor %}
+                <div class="form-group">
+                    <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
+                    {{ form.password1 }}
+                    {% for error in form.password1.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
+                    {{ form.password2 }}
+                    {% for error in form.password2.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                    <input class="btn" type="submit" value="Criar">
+            </form>
+            <div class="opcoes-extras-conta">
+                <a href="{% url 'login' %}">Já tenho uma conta</a>
             </div>
-            <div class="form-group">
-                <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
-                {{ form.password1 }}
-                {% for error in form.password1.errors %}
-                    <div class="error">{{ error }}</div>
-                {% endfor %}
-            </div>
-            <div class="form-group">
-                <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
-                {{ form.password2 }}
-                {% for error in form.password2.errors %}
-                    <div class="error">{{ error }}</div>
-                {% endfor %}
-            </div>
-                <input class="btn" type="submit" value="Criar">
-        </form>
-        <div class="opcoes-extras-conta">
-            <a href="{% url 'login' %}">Já tenho uma conta</a>
+    </div>
+    <footer>
+        <div class="infos-site">
+            <a href="https://www.freepik.com/search">Icon by mynamepong</a>
         </div>
-        <footer>
-            <div class="infos-site">
-                <a href="https://www.freepik.com/search">Icon by mynamepong</a>
-            </div>
-        </footer>
+    </footer>
 </body>
 </html>

@@ -8,59 +8,61 @@
     <link rel="stylesheet" href="{% static 'main.css' %}">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">
-            <a href="#">
-                <img src="{% static 'img/joystick_808513.png' %}" alt="Joystick">
-            </a>
-        </div>
-        <ul class="nav-links">
-            <li>
-                <a href="{% url 'historico-jogos' %}">Histórico de partidas</a>
-            </li>
-            <li>
-                <a href="{% url 'historico-login' %}">Histórico de login</a>
-            </li>
-            <li>
-                <a href="{% url 'logout' %}">Logout</a>
-            </li>
-        </ul>
-    </nav>
-    {% if messages %}
-        {% for message in messages %}
-            <div class="messages {{ message.tags }}">
-                <p class="message">{{ message }}</p>
+    <div class="container-principal">
+        <nav class="navbar">
+            <div class="logo">
+                <a href="#">
+                    <img src="{% static 'img/joystick_808513.png' %}" alt="Joystick">
+                </a>
             </div>
-        {% endfor %}
-    {% endif %}
-    <div class="form-container">
-        <form action="" method="POST">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="{{ form.opcao_usuario.id_for_label }}">{{ form.opcao_usuario.label }}</label>
-                <div class="opcoes-jogo">
-                    {{ form.opcao_usuario }}
+            <ul class="nav-links">
+                <li>
+                    <a href="{% url 'historico-jogos' %}">Histórico de partidas</a>
+                </li>
+                <li>
+                    <a href="{% url 'historico-login' %}">Histórico de login</a>
+                </li>
+                <li>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </li>
+            </ul>
+        </nav>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="messages {{ message.tags }}">
+                    <p class="message">{{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <div class="form-container">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="{{ form.opcao_usuario.id_for_label }}">{{ form.opcao_usuario.label }}</label>
+                    <div class="opcoes-jogo">
+                        {{ form.opcao_usuario }}
+                    </div>
+                </div>
+                <input class="btn" type="submit" value="Jogar!">
+            </form>
+        </div>
+        {% if jogo %}
+            <div class="container-resultado-jogo">
+                <div class="resumo-jogo">
+                    <p>Escolha do computador: {{ jogo.opcao_computador|capfirst }}</p>
+                    <p>Resultado:
+                    {% if jogo.resultado == 'vitória' %}
+                        <span class="vitoria">Você ganhou!</span>
+                    {% elif jogo.resultado == 'derrota' %}
+                        <span class="derrota">Você perdeu :&lpar;</span>
+                    {% else %}
+                        <span class="empate">O jogo empatou.</span>
+                    {% endif %}
+                </p>
                 </div>
             </div>
-            <input class="btn" type="submit" value="Jogar!">
-        </form>
+        {% endif %}
     </div>
-    {% if jogo %}
-        <div class="container-resultado-jogo">
-            <div class="resumo-jogo">
-                <p>Escolha do computador: {{ jogo.opcao_computador|capfirst }}</p>
-                <p>Resultado:
-                {% if jogo.resultado == 'vitória' %}
-                    <span class="vitoria">Você ganhou!</span>
-                {% elif jogo.resultado == 'derrota' %}
-                    <span class="derrota">Você perdeu :&lpar;</span>
-                {% else %}
-                    <span class="empate">O jogo empatou.</span>
-                {% endif %}
-            </p>
-            </div>
-        </div>
-    {% endif %}
     <footer>
         <div class="infos-site">
             <a href="https://www.freepik.com/search">Icon by mynamepong</a>

@@ -9,6 +9,18 @@ body {
     background-color: #b00cf1;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-principal {
+    flex: 1;
+}
+
+
 h1 {
     margin-bottom: 0.625rem;
 }
@@ -16,6 +28,10 @@ h1 {
 .btn:hover {
     background-color: #b00cf1;
     transition: background-color 0.5s ease;
+}
+
+a:focus, button:focus {
+    outline: 2px solid mediumaquamarine;
 }
 
 .error {
@@ -230,6 +246,7 @@ th.data-login, th.hora-login {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 1rem 1rem;
 }
 
 .pagination a, footer a {
@@ -244,9 +261,17 @@ th.data-login, th.hora-login {
 
 footer {
     display: flex;
-    position: fixed;
     align-items: center;
     justify-content: center;
-    bottom: 0;
     width: 100%;
+}
+
+@media (min-width:320px) and (max-width: 480px) {
+    .tabela-historico-jogos, .tabela-historico-login {
+        width: 100%;
+    }
+    .navbar .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
 }

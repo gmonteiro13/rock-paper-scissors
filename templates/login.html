@@ -8,38 +8,40 @@
     <link rel="stylesheet" href="{% static 'main.css' %}">
 </head>
 <body>
-    <div class="form-container">
-        <h1>Click Games</h1>
-        {% if messages %}
-            {% for message in messages %}
-                <div class="messages {{ message.tags }}">
-                    {{ message }}
+    <div class="container-principal">
+        <div class="form-container">
+            <h1>Click Games</h1>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="messages {{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+    
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="{{ form.usuario.id_for_label }}">{{ form.usuario.label }}</label>
+                    {{ form.usuario }}
+                    {% for error in form.usuario.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
                 </div>
-            {% endfor %}
-        {% endif %}
-
-        <form action="" method="POST">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="{{ form.usuario.id_for_label }}">{{ form.usuario.label }}</label>
-                {{ form.usuario }}
-                {% for error in form.usuario.errors %}
-                    <div class="error">{{ error }}</div>
-                {% endfor %}
-            </div>
-            <div class="form-group">
-                <label for="{{ form.senha.id_for_label }}">{{ form.senha.label }}</label>
-                {{ form.senha }}
-                {% for error in form.senha.errors %}
-                    <div class="error">{{ error }}</div>
-                {% endfor %}
-            </div>
-                <input class="btn" type="submit" value="Entrar">
-        </form>
-    </div>
-    <div class="opcoes-extras-conta">
-        <p>Não tem conta?</p>
-        <a href="{% url 'criar-conta' %}">Criar conta</a>
+                <div class="form-group">
+                    <label for="{{ form.senha.id_for_label }}">{{ form.senha.label }}</label>
+                    {{ form.senha }}
+                    {% for error in form.senha.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                    <input class="btn" type="submit" value="Entrar">
+            </form>
+        </div>
+        <div class="opcoes-extras-conta">
+            <p>Não tem conta?</p>
+            <a href="{% url 'criar-conta' %}">Criar conta</a>
+        </div>
     </div>
     <footer>
         <div class="infos-site">
